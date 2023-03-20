@@ -15,9 +15,6 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/notes", noteRoutes);
 
-app.use(notFound);
-app.use(errorHandler);
-
 __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
@@ -31,6 +28,9 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running..");
   });
 }
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
