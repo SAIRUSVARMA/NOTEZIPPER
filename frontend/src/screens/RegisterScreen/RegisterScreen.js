@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
 import { register } from "../../actions/userActions";
@@ -9,8 +9,7 @@ import MainScreen from "../../components/MainScreen";
 //import axios from "axios";
 import "./RegisterScreen.css";
 
-const RegisterScreen = () => {
-  const navigate = useNavigate();
+function RegisterScreen({ history }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [pic, setPic] = useState(
@@ -28,9 +27,9 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/mynotes");
+      history.push("/");
     }
-  }, [navigate, userInfo]);
+  }, [history, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -143,6 +142,6 @@ const RegisterScreen = () => {
       </div>
     </MainScreen>
   );
-};
+}
 
 export default RegisterScreen;

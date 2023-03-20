@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MainScreen from "../../components/MainScreen";
 import "./LoginScreen.css";
 import Loading from "../../components/Loading";
@@ -9,8 +9,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/userActions";
 
-const LoginScreen = () => {
-  const navigate = useNavigate();
+function LoginScreen({ history }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,9 +20,9 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/mynotes");
+      history.push("/mynotes");
     }
-  }, [navigate, userInfo]);
+  }, [history, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -71,6 +70,6 @@ const LoginScreen = () => {
       </div>
     </MainScreen>
   );
-};
+}
 
 export default LoginScreen;
